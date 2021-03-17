@@ -13,7 +13,11 @@ class CriarEquipamentos extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('equipamentos', function (Blueprint $table) {
+            $table->bigIncrements('id_equipamento');
+            $table->string('nome_equipamento');          
+            
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class CriarEquipamentos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('equipamentos');
     }
 }

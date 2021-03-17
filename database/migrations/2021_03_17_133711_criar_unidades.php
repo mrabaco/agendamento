@@ -13,7 +13,11 @@ class CriarUnidades extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('unidades', function (Blueprint $table) {
+            $table->bigIncrements('id_unidade');
+            $table->string('nome_unidade');
+            $table->string('sigla_unidade');
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class CriarUnidades extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('unidades');
     }
 }

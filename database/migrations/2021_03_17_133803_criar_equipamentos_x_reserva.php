@@ -13,7 +13,12 @@ class CriarEquipamentosXReserva extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('equipamentos_x_reserva', function (Blueprint $table) {
+            $table->bigIncrements('id_equipa');
+            $table->integer('id_reserva');
+            $table->integer('id_equipamento');            
+            
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CriarEquipamentosXReserva extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('equipamentos_x_reserva');
     }
 }
