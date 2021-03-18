@@ -13,12 +13,13 @@ class CriarPeriodo extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('periodo'))
+        {
         Schema::create('periodo', function (Blueprint $table) {
-            $table->bigIncrements('id_periodo');
-            $table->integer('id_reserva');
-            $table->string('id_instancia');
-            $table->dateTime('data', $precision = 0);
-            $table->boolean('hora_0');
+            $table->bigIncrements('id_periodo');            
+            $table->dateTime('data_inicial',$precision = 0);
+            $table->dateTime('data_final',$precision = 0);          
+           /* $table->boolean('hora_0');
             $table->boolean('hora_1');
             $table->boolean('hora_2');
             $table->boolean('hora_3');
@@ -42,9 +43,29 @@ class CriarPeriodo extends Migration
             $table->boolean('hora_21');
             $table->boolean('hora_22');
             $table->boolean('hora_23');   
-                   
+            */       
             
         });
+        Schema::table('periodo', function (Blueprint $table) {          
+                    
+            $table->unsignedBigInteger('id_reserva');           
+            $table->foreign('id_reserva')
+          ->references('id_reserva')
+          ->on('reserva');
+      });
+
+      Schema::table('periodo', function (Blueprint $table) {          
+                    
+        $table->unsignedBigInteger('id_instancia');           
+        $table->foreign('id_instancia')
+      ->references('id_instancia')
+      ->on('instancia');
+  });
+      
+    } 
+
+
+
     }
 
     /**

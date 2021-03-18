@@ -13,10 +13,16 @@ class CriarInstancia extends Migration
      */
     public function up()
     {
-        Schema::create('instancia', function (Blueprint $table) {
-            $table->bigIncrements('id_instancia');
-            $table->string('nome_instancia');            
-        });
+        if (!Schema::hasTable('instancia'))
+        {
+            Schema::create('instancia', function (Blueprint $table) {
+                $table->bigIncrements('id_instancia');
+                $table->string('nome_instancia');         
+            });
+
+        } 
+
+        
     }
 
     /**
